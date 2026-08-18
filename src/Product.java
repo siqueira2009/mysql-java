@@ -1,13 +1,16 @@
+// Classe do produto
 public class Product {
-    private int id;
-    private String name;
-    private double price;
+    private int id; // Atributo de ID
+    private String name; // Atributo de nome
+    private double price; // Atributo de preço
     
+    // Cria um construtor com nome e preço apenas (ID vem do banco)
     public Product(String name, double price) {
         this.name = name;
         this.price = price;
     }
 
+    // Getters e setters (já que os atributos são privados)
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

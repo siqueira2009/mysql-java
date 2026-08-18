@@ -1,11 +1,11 @@
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.*; // Importa tudo do Swing
+import java.awt.*; // Importa tudo do AWT, que é a base gráfica do Java (onde o Swing roda em cima)
 
+// Importa os eventos de mouse
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class InterfaceComponents {
-
     // Método para criar um botão estilizado
     public JButton createStyledButton(String text) {
         JButton btn = new JButton(text); // Cria o botão
