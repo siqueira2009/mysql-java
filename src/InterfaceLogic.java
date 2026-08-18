@@ -28,7 +28,7 @@ public class InterfaceLogic {
         try {
             List<Product> products = dao.list();
     
-            if (products.isEmpty()) {
+            if (products == null || products.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "There is no products registred!", "List", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
@@ -41,6 +41,44 @@ public class InterfaceLogic {
             }
     
             JOptionPane.showMessageDialog(null, sb.toString(), "Product List", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void delete() {
+        try {
+            String id = JOptionPane.showInputDialog("Product ID: ");
+            if (id == null || id.isBlank()) return;
+
+            List<Product> products = dao.list();
+            
+            if (products == null || products.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "There is no products registred!", "Delete", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            Product singleProduct = null;
+            for (Product p : products) {
+                if (String.valueOf(p.getId()).equals(id)) {
+                    singleProduct = p;
+                    break;
+                }
+            }
+
+            if (singleProduct == null) {
+                JOptionPane.showMessageDialog(null, "Product with ID " + id + " not found!", "Delete", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            int confirm = JOptionPane.showConfirmDialog(null, "Do you want do delete item " + singleProduct.getName() + '?', "Delete item", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        
+            if (confirm == JOptionPane.YES_OPTION) {
+                dao.delete(singleProduct.getId());
+                JOptionPane.showMessageDialog(null, "Product " + singleProduct.getName() + " delete sucessfully!", "Delete item", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Product " + singleProduct.getName() + " was NOT deleted.", "Delete item", JOptionPane.CANCEL_OPTION);
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

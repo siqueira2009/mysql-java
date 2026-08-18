@@ -23,6 +23,7 @@ public class Main {
         listBtn.addActionListener(e -> new InterfaceLogic().list());
         JButton updateBtn = new InterfaceComponents().createStyledButton("Update item"); // Botão de atualizar itens
         JButton deleteBtn = new InterfaceComponents().createStyledButton("Delete item"); // Botão de deletar itens
+        deleteBtn.addActionListener(e -> new InterfaceLogic().delete());
 
         // 4. Adição dos componentes no painel
         panel.add(title);
