@@ -18,6 +18,7 @@ public class Main {
         // 3. Criação dos componentes
         JLabel title = new InterfaceComponents().createStyledText("Store CRUD", "title", "center"); // Cria o título
         JButton insertBtn = new InterfaceComponents().createStyledButton("Insert item"); // Botão de inserir itens
+        insertBtn.addActionListener(e -> new InterfaceLogic().insert());
         JButton listBtn = new InterfaceComponents().createStyledButton("List items"); // Botão de listar itens
         JButton updateBtn = new InterfaceComponents().createStyledButton("Update item"); // Botão de atualizar itens
         JButton deleteBtn = new InterfaceComponents().createStyledButton("Delete item"); // Botão de deletar itens
