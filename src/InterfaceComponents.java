@@ -45,7 +45,7 @@ public class InterfaceComponents {
         } else if (type.equals("subtitle")) {
             txt.setFont(new Font("Arial", Font.BOLD, 24));
         } else {
-            txt.setFont(new Font("Arial", Font.PLAIN, 24));    
+            txt.setFont(new Font("Arial", Font.PLAIN, 16));    
         }
         
         // Verifica o posicionamento passado e com isso define a centralização

@@ -46,8 +46,6 @@ public class ProductDAO {
 
             // Depois retorna essa lista
             return list;
-        } catch (SQLException e) { // Caso dê erro, retorna null por segurança
-            return null;
         }
     }
 
