@@ -40,18 +40,18 @@ public class InterfaceComponents {
         JLabel txt = new JLabel(text); // Cria um label
         
         // Verifica o tipo e com isso define o tipo do texto
-        if (type == "title") {
+        if (type.equals("title")) {
             txt.setFont(new Font("Arial", Font.BOLD, 32));
-        } else if (type == "subtitle") {
+        } else if (type.equals("subtitle")) {
             txt.setFont(new Font("Arial", Font.BOLD, 24));
         } else {
             txt.setFont(new Font("Arial", Font.PLAIN, 24));    
         }
         
         // Verifica o posicionamento passado e com isso define a centralização
-        if (pos == "left") {
+        if (pos.equals("left")) {
             txt.setHorizontalAlignment(SwingConstants.LEFT);
-        } else if (pos == "right") {
+        } else if (pos.equals("right")) {
             txt.setHorizontalAlignment(SwingConstants.RIGHT);
         } else {
             txt.setHorizontalAlignment(SwingConstants.CENTER);
