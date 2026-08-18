@@ -1,67 +1,37 @@
-import java.util.*;
+import javax.swing.*; // Importa todos os componentes gráficos do Swing
+
+import java.awt.*; // Importa o pacote gráfico base do Java (Swing roda em cima dele)
 
 public class Main {
-    @SuppressWarnings("ConvertToTryWithResources")
-
     public static void main(String[] args) {
-        ProductDAO dao = new ProductDAO();
-        Scanner sc = new Scanner(System.in);
-        sc.useLocale(Locale.US);
+        // 1. Criação do frame (janela)
+        JFrame frame = new JFrame("Store CRUD"); // Cria uma nova janela
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Define que o clique no X, fecha a janela
+        frame.setSize(360, 360); // Define o tamanho da janela
+        frame.setLocationRelativeTo(null); // Centraliza em relação ao centro (null = centro)
 
-        System.out.println(
-            "1 - Insert | 2 - List | 3 - Update | 4 - Delete"
-        );
+        // 2. Criação do panel (container que guarda os itens e fica dentro do frame)
+        JPanel panel = new JPanel(new GridLayout(5, 1, 10, 10)); // Cria esse painel e define a organização do elementos
+        // 5 linhas, 1 coluna (um item por linha), 10 de espaço vertical e 10 de espaço horizontal
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Seta a borda, colocando uma margem vazia de 20px (tipo um padding no CSS)
 
-        System.out.print("Choose an option: ");
-        int option = sc.nextInt();
-        sc.nextLine();
+        // 3. Criação dos componentes
+        JLabel title = new InterfaceComponents().createStyledText("Store CRUD", "title", "center"); // Cria o título
+        JButton insertBtn = new InterfaceComponents().createStyledButton("Insert item"); // Botão de inserir itens
+        JButton listBtn = new InterfaceComponents().createStyledButton("List items"); // Botão de listar itens
+        JButton updateBtn = new InterfaceComponents().createStyledButton("Update item"); // Botão de atualizar itens
+        JButton deleteBtn = new InterfaceComponents().createStyledButton("Delete item"); // Botão de deletar itens
 
-        switch (option) {
-            case 1:
-                System.out.print("Name: ");
-                String name = sc.nextLine();
+        // 4. Adição dos componentes no painel
+        panel.add(title);
+        panel.add(insertBtn);
+        panel.add(listBtn);
+        panel.add(updateBtn);
+        panel.add(deleteBtn);
 
-                System.out.print("Price: ");
-                String price = sc.nextLine();
-                double normalizedPrice = Double.parseDouble(price.replace(',', '.'));
-
-                Product p = new Product(name, normalizedPrice);
-                dao.insert(p);
-                break;
-            case 2: 
-                for (Product prod : dao.list()) {
-                    System.out.println(
-                        prod.getId() + " - " +
-                        prod.getName() + " - R$ " +
-                        prod.getPrice());
-                }
-                break;
-            case 3: 
-                System.out.print("Product ID to UPDATE: ");
-                int id = sc.nextInt();
-
-                sc.nextLine();
-
-                System.out.print("New product name: ");
-                name = sc.nextLine();
-
-                System.out.print("New product price: ");
-                price = sc.nextLine();
-                normalizedPrice = Double.parseDouble(price.replace(',', '.'));
-    
-                p = new Product(name, normalizedPrice);
-                p.setId(id);
-                dao.update(p);
-                break;
-            case 4:
-                System.out.print("Product ID to DELETE: ");
-                id = sc.nextInt();
-                dao.delete(id);
-                break;
-            default:
-                System.out.println("Invalid option! Try another one.");
-                break;
-        }
-        sc.close();
+        // 5. Adição do painel no frame
+        frame.add(panel);
+        // Faz o frame fica vísivel, ativando a interface
+        frame.setVisible(true);
     }
 }
