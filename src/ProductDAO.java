@@ -4,7 +4,7 @@ import java.util.*;
 public class ProductDAO {
 
     @SuppressWarnings("CallToPrintStackTrace")
-    public void insert(Product p) {
+    public void insert(Product p) throws SQLException {
         String sql = "INSERT INTO produtos (nome, preco) VALUES (?, ?)";
 
         try (Connection conn = DbConnection.connect();
@@ -14,13 +14,11 @@ public class ProductDAO {
             stmt.setDouble(2, p.getPrice());
             stmt.executeUpdate();
             System.out.println("Product inserted successfully.");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
     @SuppressWarnings("CallToPrintStackTrace")
-    public List<Product> list() {
+    public List<Product> list() throws SQLException {
         String sql = "SELECT * FROM produtos";
 
         try (Connection conn = DbConnection.connect();
@@ -35,13 +33,12 @@ public class ProductDAO {
             }
             return lista;
         } catch (SQLException e) {
-            e.printStackTrace();
             return null;
         }
     }
 
     @SuppressWarnings("CallToPrintStackTrace")
-    public void update(Product p) {
+    public void update(Product p) throws SQLException {
         String sql = "UPDATE produtos SET nome=?, preco=? WHERE id=?";
 
         try (Connection conn = DbConnection.connect();
@@ -52,13 +49,11 @@ public class ProductDAO {
             stmt.setInt(3, p.getId());
             stmt.executeUpdate();
             System.out.println("Product updated successfully.");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
     @SuppressWarnings("CallToPrintStackTrace")
-    public void delete(int id) {
+    public void delete(int id) throws SQLException {
         String sql = "DELETE FROM produtos WHERE id=?";
 
         try (Connection conn = DbConnection.connect();
@@ -67,8 +62,6 @@ public class ProductDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
             System.out.println("Product deleted successfully.");
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }

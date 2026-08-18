@@ -20,6 +20,7 @@ public class Main {
         JButton insertBtn = new InterfaceComponents().createStyledButton("Insert item"); // Botão de inserir itens
         insertBtn.addActionListener(e -> new InterfaceLogic().insert());
         JButton listBtn = new InterfaceComponents().createStyledButton("List items"); // Botão de listar itens
+        listBtn.addActionListener(e -> new InterfaceLogic().list());
         JButton updateBtn = new InterfaceComponents().createStyledButton("Update item"); // Botão de atualizar itens
         JButton deleteBtn = new InterfaceComponents().createStyledButton("Delete item"); // Botão de deletar itens
 
